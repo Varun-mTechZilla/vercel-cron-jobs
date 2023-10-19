@@ -4,7 +4,7 @@ const storeSiteActivities = async (
 	req: NextApiRequest,
 	res: NextApiResponse,
 ) => {
-	console.log("Vercek Cron Job");
+	console.log("Vercel Cron Job runtime log");
 
 	return res
 		.status(200)
