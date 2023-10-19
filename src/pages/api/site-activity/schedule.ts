@@ -1,15 +1,27 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from "next";
+import { NextApiRequest, NextApiResponse } from "next";
 
-type Data = {
-	name: string;
+const storeSiteActivities = async (
+	req: NextApiRequest,
+	res: NextApiResponse,
+) => {
+	console.log("Vercek Cron Job");
+
+	return res
+		.status(200)
+		.json({ status: true, message: "Cron Job Schedule for vercel cron" });
 };
 
-export default function handler(
+export default async function handler(
 	req: NextApiRequest,
-	res: NextApiResponse<Data>,
+	res: NextApiResponse,
 ) {
-	res.status(200).json({
-		name: "Site Activity Api Route Hit With Vercel Cron Job",
-	});
+	switch (req.method) {
+		case "GET":
+			return await storeSiteActivities(req, res);
+
+		default:
+			return res
+				.status(404)
+				.json({ status: false, message: "Path not found" });
+	}
 }
